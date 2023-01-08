@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int finalScore = 0;
 
     private SoulGenerator soulGenerator;
+    private IReapUI ireap;
 
     // Index into list of the soul you are currently looking at.
     private int curSoulIndex = 0;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        ireap = FindObjectOfType<IReapUI>();
         soulGenerator = FindObjectOfType<SoulGenerator>();
 
         // Start with 7 souls to refrence 7 deadly sins, the rest will load in when needed up to the max number of souls
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
             souls.Add((SoulClass)soul);
         }
 
+        ireap.LoadIReapDisplay(souls[curSoulIndex]);
+
         Debug.Log("Finished Generating Souls");
         Debug.Log(souls[0].SinTotal());
         Debug.Log(souls[0].VirtueTotal());
@@ -39,7 +43,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            curSoulIndex++;
+            ireap.LoadIReapDisplay(souls[curSoulIndex]);
+        }
     }
 
     #endregion
@@ -56,12 +64,20 @@ public class GameManager : MonoBehaviour
     {
         finalScore += souls[curSoulIndex].CalculatePoints();
         curSoulIndex++;
+        ireap.UpdateScore(finalScore);
+        Debug.Log(souls[curSoulIndex].SinTotal());
+        Debug.Log(souls[curSoulIndex].VirtueTotal());
+        Debug.Log(souls[curSoulIndex].CalculatePoints());
     }
 
     public void Reject()
     {
         finalScore -= souls[curSoulIndex].CalculatePoints();
         curSoulIndex++;
+        ireap.UpdateScore(finalScore);
+        Debug.Log(souls[curSoulIndex].SinTotal());
+        Debug.Log(souls[curSoulIndex].VirtueTotal());
+        Debug.Log(souls[curSoulIndex].CalculatePoints());
     }
 
     #endregion

@@ -53,16 +53,17 @@ public class SoulGenerator : MonoBehaviour
 
     public SoulClass GenerateSoul()
     {
-        //float evilModifier = Random.Range(0.8f, 1.5f);
+        float evilModifier = Random.Range(0.3f, 1.5f);
         //float goodModifier = (1 - evilModifier) * Mathf.Sign(1 - evilModifier);//= Random.Range(0.01f, 1.5f);
+        float goodModifier = Random.Range(0.3f, 1.5f);
 
         //Debug.Log(evilModifier);
         //Debug.Log(goodModifier);
 
         //var sins = deedGenerator.GenerateAllSins(evilModifier);
-        var sins = deedGenerator.GenerateAllSins(1f);
+        var sins = deedGenerator.GenerateAllSins(evilModifier);
         //var virtues = deedGenerator.GenerateAllVirtues(goodModifier);
-        var virtues = deedGenerator.GenerateAllVirtues(1f);
+        var virtues = deedGenerator.GenerateAllVirtues(goodModifier);
 
         bool isMale = Random.Range(0, 2) != 0;
         return new SoulClass(GenerateFirstName(isMale), GenerateLastName(), GenerateRandomAge(), isMale, sins, virtues);

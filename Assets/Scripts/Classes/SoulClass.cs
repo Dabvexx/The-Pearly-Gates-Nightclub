@@ -59,7 +59,7 @@ public class SoulClass
 
 		foreach (var sin in sins)
         {
-			sinTotal += sin.score * sin.timesDone;
+			sinTotal += Mathf.RoundToInt(sin.score * sin.timesDone * Random.Range(.75f, 2f));
         }
 
 		return sinTotal;
@@ -76,7 +76,8 @@ public class SoulClass
 
         foreach (var virtue in virtues)
         {
-			virtueTotal += virtue.score * virtue.timesDone;
+			// Add a little noise to the calculation
+			virtueTotal += Mathf.RoundToInt(virtue.score * virtue.timesDone * Random.Range(.8f, 2f));
         }
 
 		return virtueTotal;
@@ -89,6 +90,6 @@ public class SoulClass
 
 	public int CalculatePoints()
     {
-		return DeedTotal() == -1 ? SinTotal() : VirtueTotal();
+		return Mathf.Sign(DeedTotal()) == -1 ? SinTotal() : VirtueTotal();
     }
 }
