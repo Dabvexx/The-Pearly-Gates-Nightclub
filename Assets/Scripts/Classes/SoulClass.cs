@@ -59,7 +59,7 @@ public class SoulClass
 
 		foreach (var sin in sins)
         {
-			sinTotal += Mathf.RoundToInt(sin.score * sin.timesDone * Random.Range(.75f, 2f));
+			sinTotal += Mathf.RoundToInt(sin.score * sin.timesDone * Random.Range(.75f, 2.2f));
         }
 
 		return sinTotal;
@@ -77,7 +77,7 @@ public class SoulClass
         foreach (var virtue in virtues)
         {
 			// Add a little noise to the calculation
-			virtueTotal += Mathf.RoundToInt(virtue.score * virtue.timesDone * Random.Range(.8f, 2f));
+			virtueTotal += Mathf.RoundToInt(virtue.score * virtue.timesDone * Random.Range(.75f, 2.2f));
         }
 
 		return virtueTotal;
