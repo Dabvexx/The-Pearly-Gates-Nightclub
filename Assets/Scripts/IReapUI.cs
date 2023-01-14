@@ -24,20 +24,6 @@ public class IReapUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI DeedText;
     #endregion
 
-    #region Unity Methods
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    #endregion
-
     #region Private Methods
     // Private Methods.
     
@@ -47,6 +33,14 @@ public class IReapUI : MonoBehaviour
     // Public Methods.
     public void LoadIReapDisplay(SoulClass soul)
     {
+        acceptButton.gameObject.SetActive(true);
+        rejectButton.gameObject.SetActive(true);
+        genderSymbol.gameObject.SetActive(true);
+        pointText.gameObject.SetActive(true);
+        soulName.gameObject.SetActive(true);
+        timeText.gameObject.SetActive(true);
+        retryButton.gameObject.SetActive(false);
+
         genderSymbol.sprite = soul.isMale ? maleSymbol : femaleSymbol;
         soulName.text = $"{soul.firstName} {soul.lastName}";
 
@@ -86,6 +80,10 @@ public class IReapUI : MonoBehaviour
     {
         acceptButton.gameObject.SetActive(false);
         rejectButton.gameObject.SetActive(false);
+        genderSymbol.gameObject.SetActive(false);
+        pointText.gameObject.SetActive(false);
+        soulName.gameObject.SetActive(false);
+        timeText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(true);
     }
 

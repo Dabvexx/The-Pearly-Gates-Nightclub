@@ -15,50 +15,47 @@ MonoBehaviour:
   pettySins:
   - deedName: Didn't tip delivery driver
     score: -15
-    timesDone: 102
+    timesDone: 54
   - deedName: Stole from a gas station
     score: -5
-    timesDone: 125
+    timesDone: 64
   - deedName: Spit in someones food
     score: -8
-    timesDone: 131
+    timesDone: 59
   - deedName: Stole candy from a baby
     score: -5
-    timesDone: 4
+    timesDone: 6
   - deedName: Swore infront of children
     score: -7
-    timesDone: 0
+    timesDone: 142
   - deedName: Stepped on a crack and broke their mama's back
     score: -4
-    timesDone: 0
+    timesDone: 3
   - deedName: Got into school fights
     score: -6
-    timesDone: 0
+    timesDone: 67
   - deedName: Peed in a park
     score: -7
-    timesDone: 0
+    timesDone: 109
   - deedName: Made a quiche
     score: -2
-    timesDone: 0
-  - deedName: Scalped GPUs in 2021
-    score: -12
-    timesDone: 0
+    timesDone: 67
   sins:
   - deedName: Shoplifting from gas stations
     score: -15
-    timesDone: 33
+    timesDone: 3
   - deedName: Siphoned gas out of other people's gas tanks
     score: -17
-    timesDone: 72
+    timesDone: 49
   - deedName: Abused drugs
     score: -12
-    timesDone: 48
+    timesDone: 76
   - deedName: Kicked a puppy
     score: -24
-    timesDone: 30
+    timesDone: 44
   - deedName: Commited adultery
     score: -19
-    timesDone: 3
+    timesDone: 23
   - deedName: Put sugar into peoples gas tanks
     score: -13
     timesDone: 95
@@ -68,23 +65,26 @@ MonoBehaviour:
     timesDone: 14
   - deedName: Drove while intoxicated
     score: -40
-    timesDone: 15
+    timesDone: 26
   - deedName: Stole from small buisnesses
     score: -30
-    timesDone: 32
+    timesDone: 10
   - deedName: Armed robbery
     score: -45
-    timesDone: 21
+    timesDone: 39
   - deedName: Dealt drugs
     score: -35
-    timesDone: 43
+    timesDone: 12
   - deedName: Made people pay for insulin
     score: -40
-    timesDone: 0
+    timesDone: 48
   horrificSins:
   - deedName: Leader of terrorist groups
     score: -120
     timesDone: 73
+  - deedName: Scalped GPUs in 2021
+    score: -10000
+    timesDone: 1
   - deedName: Sparked nuclear war
     score: -200
     timesDone: 1
@@ -93,67 +93,67 @@ MonoBehaviour:
     timesDone: 1
   - deedName: Murder
     score: -80
-    timesDone: 111
+    timesDone: 1
   pettyVirtues:
   - deedName: Put a penny in the tip jar
     score: 4
-    timesDone: 95
+    timesDone: 12
   - deedName: Paid for someone elses meal
     score: 9
-    timesDone: 73
+    timesDone: 105
   - deedName: Gave candy to a baby
     score: 10
-    timesDone: 85
+    timesDone: 49
   - deedName: Tipped the delivery driver
     score: 15
-    timesDone: 42
+    timesDone: 17
   - deedName: Gave seat up for pregnant woman
     score: 13
     timesDone: 18
   virtues:
   - deedName: Gave money to the homeless.
     score: 16
-    timesDone: 72
+    timesDone: 13
   - deedName: Stole from large buisnesses
     score: 20
-    timesDone: 88
+    timesDone: 32
   - deedName: Helped old lady cross the street
     score: 25
-    timesDone: 24
+    timesDone: 96
   - deedName: Broke down monopolies
     score: 35
-    timesDone: 34
+    timesDone: 86
   - deedName: Helped remove corruption in the government
     score: 40
-    timesDone: 69
+    timesDone: 7
   - deedName: Used renewable energy
     score: 28
-    timesDone: 61
+    timesDone: 58
   - deedName: Rescued a kitten from the street
     score: 25
-    timesDone: 78
+    timesDone: 5
   heroicVirtues:
   - deedName: Took down major terrorist groups
     score: 80
-    timesDone: 40
+    timesDone: 41
   - deedName: Pirated Adobe Products
     score: 50
-    timesDone: 17
+    timesDone: 29
   - deedName: Did a successful heart surgery
     score: 75
-    timesDone: 30
+    timesDone: 37
   - deedName: Donated to charity
     score: 60
-    timesDone: 6
+    timesDone: 24
   - deedName: Cleaned trash from the ocean
     score: 60
-    timesDone: 23
+    timesDone: 28
   - deedName: Discovered new clean energy
     score: 75
-    timesDone: 7
+    timesDone: 10
   - deedName: Solved a cold case
     score: 45
-    timesDone: 5
+    timesDone: 7
   angelicVirtues:
   - deedName: Helped cure cancer
     score: 100

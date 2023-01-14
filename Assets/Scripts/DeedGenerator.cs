@@ -12,6 +12,9 @@ public class DeedGenerator : MonoBehaviour
     // Variables.
     [SerializeField] private DeedList deeds;
 
+    [SerializeField] private int rollMin;
+    [SerializeField] private int rollMax;
+
     [Space(10), Header("Sin Variables")]
     [SerializeField, Tooltip("0 = no chance, 1 = guarenteed chance"), Range(0f, 1f)] private float pettySinChance;
     [SerializeField, Tooltip("0 = no chance, 1 = guarenteed chance"), Range(0f, 1f)] private float sinChance;
@@ -45,106 +48,33 @@ public class DeedGenerator : MonoBehaviour
         Debug.Log("Generating Sins");
         List<DeedClass> sins = new List<DeedClass>();
 
-        Debug.Log("Trying petty sins chance: " + pettySinChance * evilModifier);
-        // Chance of getting petty sins.
-        if (Random.Range(0.001f, 1f) <= pettySinChance * evilModifier)
+        var num = Random.Range(rollMin, rollMax);
+
+        for (int i = 0; i < num; i++)
         {
-            Debug.Log("Generating petty sins.");
-            sins = GeneratePettySins(sins);
-        }
+            if (Random.Range(0.001f, 1f) <= horrificSinChance * evilModifier)
+            {
+                Debug.Log("Generating horrific sins.");
+                sins.Add(GenerateHorrificSins());
+            }
 
-        Debug.Log("Trying sins chance: " + sinChance * evilModifier);
-        // Chance of getting sins.
-        if (Random.Range(0.001f, 1f) <= sinChance * evilModifier)
-        {
-            Debug.Log("Generating sins.");
-            sins = GenerateSins(sins);
-        }
+            if (Random.Range(0.001f, 1f) <= terribleSinChance * evilModifier)
+            {
+                Debug.Log("Generating terrible sins.");
+                sins.Add(GenerateTerribleSins());
+            }
 
-        Debug.Log("Trying terrible sins chance: " + terribleSinChance * evilModifier);
-        // Chance of getting terrible sins.
-        if (Random.Range(0.001f, 1f) <= terribleSinChance * evilModifier)
-        {
-            Debug.Log("Generating terrible sins.");
-            sins = GenerateTerribleSins(sins);
-        }
+            if (Random.Range(0.001f, 1f) <= sinChance * evilModifier)
+            {
+                Debug.Log("Generating sins.");
+                sins.Add(GenerateSins());
+            }
 
-        Debug.Log("Trying horrific sins chance: " + horrificSinChance * evilModifier);
-        // Chance of getting horrific sins.
-        if (Random.Range(0.001f, 1f) <= horrificSinChance * evilModifier)
-        {
-            Debug.Log("Generating horrific sins.");
-            sins = GenerateHorrificSins(sins);
-        }
-
-        return sins;
-    }
-
-    public List<DeedClass> GeneratePettySins(List<DeedClass> sins)
-    {
-        var pettySins = new List<DeedClass>(deeds.GetPettySins());
-        int sinAmount = Random.Range(1, pettySins.Count - 1);
-        Debug.Log($"Amount of petty sins: {sinAmount}");
-
-
-        for (int i = 0; i < sinAmount; i++)
-        {
-            int sinIndex = Random.Range(0, pettySins.Count - 1);
-            sins.Add(pettySins[sinIndex]);
-            pettySins.RemoveAt(sinIndex);
-            sins.LastOrDefault().timesDone = Random.Range(1, pettySinsMax);
-        }
-
-        return sins;
-    }
-
-    public List<DeedClass> GenerateSins(List<DeedClass> sins)
-    {
-        var normalSins = new List<DeedClass>(deeds.GetSins());
-        int sinAmount = Random.Range(1, normalSins.Count - 1);
-        Debug.Log($"Amount of sins: {sinAmount}");
-
-
-        for (int i = 0; i < sinAmount; i++)
-        {
-            int sinIndex = Random.Range(0, normalSins.Count - 1);
-            sins.Add(normalSins[sinIndex]);
-            normalSins.RemoveAt(sinIndex);
-            sins.LastOrDefault().timesDone = Random.Range(1, sinsMax);
-        }
-
-        return sins;
-    }
-    public List<DeedClass> GenerateTerribleSins(List<DeedClass> sins)
-    {
-        var terribleSins = new List<DeedClass>(deeds.GetTerribleSins());
-        int sinAmount = Random.Range(1, terribleSins.Count - 1);
-        Debug.Log($"Amount of terrible sins: {sinAmount}");
-
-
-        for (int i = 0; i < sinAmount; i++)
-        {
-            int sinIndex = Random.Range(1, terribleSins.Count - 1);
-            sins.Add(terribleSins[sinIndex]);
-            terribleSins.RemoveAt(sinIndex);
-            sins.LastOrDefault().timesDone = Random.Range(1, terribleSinsMax);
-        }
-
-        return sins;
-    }
-    public List<DeedClass> GenerateHorrificSins(List<DeedClass> sins)
-    {
-        var horrificSins = new List<DeedClass>(deeds.GetHorrificSins());
-        int sinAmount = Random.Range(1, horrificSins.Count -1);
-        Debug.Log($"Amount of horrific sins: {sinAmount}");
-
-
-        for (int i = 0; i < sinAmount; i++)
-        {
-            int sinIndex = Random.Range(1, horrificSins.Count - 1);
-            sins.Add(horrificSins[sinIndex]);
-            horrificSins.RemoveAt(sinIndex);
-            sins.LastOrDefault().timesDone = Random.Range(1, horrificSinsMax);
+            else
+            {
+                Debug.Log("Generating petty sins.");
+                sins.Add(GeneratePettySins());
+            }
         }
 
         return sins;
@@ -156,107 +86,75 @@ public class DeedGenerator : MonoBehaviour
         Debug.Log("Generating Virtues");
         List<DeedClass> virtues = new List<DeedClass>();
 
-        Debug.Log("Trying petty virtues chance:" + pettyVirtueChance * goodModifier);
-        // Chance of getting petty virtues.
-        if (Random.Range(0.001f, 1f) <= pettyVirtueChance * goodModifier)
+        // Roll amount
+        var num = Random.Range(rollMin, rollMax);
+
+        for (int i = 0; i < num; i++)
         {
-            Debug.Log("Generating petty virtues.");
-            virtues = GeneratePettyVirtues(virtues);
-        }
+            if (Random.Range(0.001f, 1f) <= angelicVirtueChance * goodModifier)
+            {
+                Debug.Log("Generating angelic virtues.");
+                virtues.Add(GenerateAngelicVirtues());
+            }
 
-        Debug.Log("Trying virtues chance: " + virtueChance * goodModifier);
-        // Chance of getting virtues.
-        if (Random.Range(0.001f, 1f) <= virtueChance * goodModifier)
-        {
-            Debug.Log("Generating virtues.");
-            virtues = GenerateVirtues(virtues);
-        }
+            if (Random.Range(0.001f, 1f) <= heroicVirtueChance * goodModifier)
+            {
+                Debug.Log("Generating heroic virtues.");
+                virtues.Add(GenerateHeroicVirtues());
+            }
 
-        Debug.Log("Trying heroic virtues chance: " + heroicVirtueChance * goodModifier);
-        // Chance of getting heroic virtues.
-        if (Random.Range(0.001f, 1f) <= heroicVirtueChance * goodModifier)
-        {
-            Debug.Log("Generating heroic virtues.");
-            virtues = GenerateHeroicVirtues(virtues);
-        }
+            if (Random.Range(0.001f, 1f) <= virtueChance * goodModifier)
+            {
+                Debug.Log("Generating virtues.");
+                virtues.Add(GenerateVirtues());
+            }
 
-        Debug.Log("Trying angelic virtues chance: " + angelicVirtueChance * goodModifier);
-        // Chance of getting angelic virtues.
-        if (Random.Range(0.001f, 1f) <= angelicVirtueChance * goodModifier)
-        {
-            Debug.Log("Generating angelic virtues.");
-            virtues = GenerateAngelicVirtues(virtues);
-        }
-
-        return virtues;
-    }
-
-    public List<DeedClass> GeneratePettyVirtues(List<DeedClass> virtues)
-    {
-        var pettyVirtues = new List<DeedClass>(deeds.GetPettyVirtues());
-        int virtueAmount = Random.Range(1, pettyVirtues.Count - 1);
-        Debug.Log($"Amount of petty virtues: {virtueAmount}");
-
-        for (int i = 0; i < virtueAmount; i++)
-        {
-            int sinIndex = Random.Range(0, pettyVirtues.Count - 1);
-            virtues.Add(pettyVirtues[sinIndex]);
-            pettyVirtues.RemoveAt(sinIndex);
-            virtues.LastOrDefault().timesDone = Random.Range(1, pettyVirtuesMax);
+            else
+            {
+                Debug.Log("Generating petty virtues.");
+                virtues.Add(GeneratePettyVirtues());
+            }
         }
 
         return virtues;
     }
 
-    public List<DeedClass> GenerateVirtues(List<DeedClass> virtues)
+    public DeedClass GeneratePettySins()
     {
-        var normalVirtues = new List<DeedClass>(deeds.GetVirtues());
-        int virtueAmount = Random.Range(1, normalVirtues.Count - 1);
-        Debug.Log($"Amount of virtues: {virtueAmount}");
-
-        for (int i = 0; i < virtueAmount; i++)
-        {
-            int sinIndex = Random.Range(0, normalVirtues.Count);
-            virtues.Add(normalVirtues[sinIndex]);
-            normalVirtues.RemoveAt(sinIndex);
-            virtues.LastOrDefault().timesDone = Random.Range(1, virtuesMax);
-        }
-
-        return virtues;
+        return deeds.pettySins[Random.Range(0, deeds.pettySins.Count - 1)];
     }
 
-    public List<DeedClass> GenerateHeroicVirtues(List<DeedClass> virtues)
+    public DeedClass GenerateSins()
     {
-        var heroicVirtues = new List<DeedClass>(deeds.GetHeroicVirtues());
-        int virtueAmount = Random.Range(1, heroicVirtues.Count - 1);
-        Debug.Log($"Amount of heroic virtues: {virtueAmount}");
-
-        for (int i = 0; i < virtueAmount; i++)
-        {
-            int sinIndex = Random.Range(0, heroicVirtues.Count);
-            virtues.Add(heroicVirtues[sinIndex]);
-            heroicVirtues.RemoveAt(sinIndex);
-            virtues.LastOrDefault().timesDone = Random.Range(1, heroicVirtuesMax);
-        }
-
-        return virtues;
+        return deeds.sins[Random.Range(0, deeds.sins.Count - 1)];
+    }
+    public DeedClass GenerateTerribleSins()
+    {
+        return deeds.terribleSins[Random.Range(0, deeds.terribleSins.Count - 1)];
+    }
+    public DeedClass GenerateHorrificSins()
+    {
+        return deeds.horrificSins[Random.Range(0, deeds.horrificSins.Count - 1)];
     }
 
-    public List<DeedClass> GenerateAngelicVirtues(List<DeedClass> virtues)
+    public DeedClass GeneratePettyVirtues()
     {
-        var angelicVirtues = new List<DeedClass>(deeds.GetAngelicVirtues());
-        int virtueAmount = Random.Range(1, angelicVirtues.Count - 1);
-        Debug.Log($"Amount of angelic virtues: {virtueAmount}");
+        return deeds.pettyVirtues[Random.Range(0, deeds.pettyVirtues.Count - 1)];
+    }
 
-        for (int i = 0; i < virtueAmount; i++)
-        {
-            int sinIndex = Random.Range(0, angelicVirtues.Count);
-            virtues.Add(angelicVirtues[sinIndex]);
-            angelicVirtues.RemoveAt(sinIndex);
-            virtues.LastOrDefault().timesDone = Random.Range(1, angelicVirtuesMax);
-        }
+    public DeedClass GenerateVirtues()
+    {
+        return deeds.virtues[Random.Range(0, deeds.virtues.Count - 1)];
+    }
 
-        return virtues;
+    public DeedClass GenerateHeroicVirtues()
+    {
+        return deeds.heroicVirtues[Random.Range(0, deeds.heroicVirtues.Count - 1)];
+    }
+
+    public DeedClass GenerateAngelicVirtues()
+    {
+        return deeds.angelicVirtues[Random.Range(0, deeds.angelicVirtues.Count - 1)];
     }
     #endregion
 }

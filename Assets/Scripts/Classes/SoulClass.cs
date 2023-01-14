@@ -90,6 +90,7 @@ public class SoulClass
 
 	public int CalculatePoints()
     {
+		Debug.Log(Mathf.Sign(DeedTotal()) == -1 ? SinTotal() : VirtueTotal());
 		return Mathf.Sign(DeedTotal()) == -1 ? SinTotal() : VirtueTotal();
     }
 }
